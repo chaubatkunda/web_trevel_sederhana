@@ -64,7 +64,7 @@
                                             </td>
                                             <td>
                                                 <?php if ($this->fungsi->user_login()->role == 1) :  ?>
-                                                    <a href="" class="btn btn-primary btn-sm">Edit</a>
+                                                    <a href="<?php echo base_url('edit.kategori/') . $kt->id_kategori; ?>" class="btn btn-primary btn-sm">Edit</a>
                                                     <a href="<?php echo base_url('hapus.katwisata/') . $kt->id_kategori; ?>" class="btn btn-danger btn-sm">Hapus</a>
                                                 <?php else : ?>
                                                     <a href="" class="btn btn-info btn-sm">Detail</a>

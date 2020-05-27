@@ -158,7 +158,54 @@ class Wisata extends CI_Controller
             }
         }
     }
-    // ! ntr ya kk istirht 10 menit
+    public function editkategori($id)
+    {
+        $data = array(
+            'title'     => 'Edit Kategori',
+            'left'      => 'Dashboard',
+            'isi'       => 'backend/wisata/edit_kategori',
+            'ktwisata'  => $this->wisata->getAllKategoryById($id)
+        );
+        $this->form_validation->set_rules('namatempat', 'Nama Tempat', 'trim|required');
+        if ($this->form_validation->run() == false) {
+            $this->load->view('backend/template/wrap', $data, false);
+        } else {
+            $config['upload_path'] = './public/assets/back/dist/img/wisata/';
+            $config['allowed_types'] = 'gif|jpg|jpeg|png';
+            $this->upload->initialize($config);
+            if (!$this->upload->do_upload('file')) {
+                $dataw = [
+                    'jenis_kategori'    => $this->input->post('namatempat', true)
+                ];
+                $this->wisata->update_kategori($id, $dataw);
+                $this->session->set_flashdata('warning', '<div class="alert alert-success" role="alert">
+                    Data Berhasil Diupdate
+                  </div>');
+                redirect('katWisata');
+            } else {
+                $query = $this->wisata->getAllKategoryById($id);
+                $folder = FCPATH . './public/assets/back/dist/img/wisata/';
+                $file = $query->gambar;
+                $upload = $folder . $file;
+                if (@unlink($upload)) {
+                    $dataw = [
+                        'jenis_kategori'    => $this->input->post('namatempat', true),
+                        'gambar'            => $this->upload->data('file_name'),
+                    ];
+                    $this->wisata->update_kategori($id, $dataw);
+                    $this->session->set_flashdata('warning', '<div class="alert alert-success" role="alert">
+                        Data Berhasil Diupdate
+                      </div>');
+                    redirect('katWisata');
+                } else {
+                    $this->session->set_flashdata('warning', '<div class="alert alert-success" role="alert">
+                    Gambar Tidak ditemukan
+                  </div>');
+                    redirect('katWisata');
+                }
+            }
+        }
+    }
     public function delete_kategori($id)
     {
         $query = $this->wisata->getAllKategoryById($id);

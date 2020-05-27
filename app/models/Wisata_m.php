@@ -31,6 +31,10 @@ class Wisata_m extends CI_Model
     {
         return $this->db->insert('t_kategori_wisata', $dataw);
     }
+    public function update_kategori($id, $dataw)
+    {
+        return $this->db->update('t_kategori_wisata', $dataw, ['id_kategori' => $id]);
+    }
     public function delete_kategori($id)
     {
         return $this->db->delete('t_kategori_wisata', ['id_kategori' => $id]);

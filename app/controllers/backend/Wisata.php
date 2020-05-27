@@ -24,8 +24,10 @@ class Wisata extends CI_Controller
         $data = array(
             'title'     => 'Paket Wisata',
             'left'      => 'Paket Wisata',
+            'kategori'  => $this->wisata->getAllKategotiWisata(),
             'isi'       => 'backend/wisata/add_w'
         );
+        $this->form_validation->set_rules('kategori', 'Kategori', 'required|trim');
         $this->form_validation->set_rules('namatempat', 'Nama Tempat', 'required|trim');
         $this->form_validation->set_rules('ketwisata', 'Ket Wisata', 'required|trim');
         $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
@@ -34,12 +36,12 @@ class Wisata extends CI_Controller
             $this->load->view('backend/template/wrap', $data, false);
         } else {
             $data = [
+                'kategori_id'       => htmlspecialchars($this->input->post('kategori', true)),
                 'nama_tempat'       => htmlspecialchars($this->input->post('namatempat', true)),
                 'ket_wisata'        => htmlspecialchars($this->input->post('ketwisata', true)),
                 'alamat'            => htmlspecialchars($this->input->post('alamat', true)),
                 'harga'             => htmlspecialchars($this->input->post('harga', true))
             ];
-
             $this->wisata->insert_data($data);
             if ($this->db->affected_rows() > 0) {
                 $this->session->set_flashdata('warning', '<div class="alert alert-success" role="alert">
@@ -60,6 +62,7 @@ class Wisata extends CI_Controller
         $data = array(
             'title'     => 'Edit Wisata',
             'left'      => 'Paket Wisata',
+            'kategori'  => $this->wisata->getAllKategotiWisata(),
             'wisata'    => $this->wisata->getAllWisataById($id),
             'isi'       => 'backend/wisata/edit_w'
         );
@@ -71,12 +74,12 @@ class Wisata extends CI_Controller
             $this->load->view('backend/template/wrap', $data, false);
         } else {
             $data = [
+                'kategori_id'       => htmlspecialchars($this->input->post('kategori', true)),
                 'nama_tempat'       => htmlspecialchars($this->input->post('namatempat', true)),
                 'ket_wisata'        => htmlspecialchars($this->input->post('ketwisata', true)),
                 'alamat'            => htmlspecialchars($this->input->post('alamat', true)),
                 'harga'             => htmlspecialchars($this->input->post('harga', true))
             ];
-
             $this->wisata->update_data($id, $data);
             $this->session->set_flashdata('warning', '<div class="alert alert-success" role="alert">
 				Data Berhasil Diupdate

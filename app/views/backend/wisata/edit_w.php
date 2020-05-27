@@ -29,6 +29,19 @@
                     <form action="" method="POST" role="form">
                         <div class="card-body">
                             <div class="form-group">
+                                <label for="namatempat">Kategori</label>
+                                <select name="kategori" id="" class="form-control">
+                                    <?php foreach ($kategori as $k) : ?>
+                                        <?php if ($k->id_kategori == $wisata->kategori_id) : ?>
+                                            <option selected value="<?php echo $k->id_kategori; ?>hpp"><?php echo $k->jenis_kategori; ?></option>
+                                        <?php else : ?>
+                                            <option value="<?php echo $k->id_kategori; ?>hpp"><?php echo $k->jenis_kategori; ?></option>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </select>
+                                <small class="text-danger"><?php echo form_error('namatempat'); ?></small>
+                            </div>
+                            <div class="form-group">
                                 <label for="namatempat">Nama Tempat</label>
                                 <input type="text" name="namatempat" class="form-control" id="namatempat" value="<?php echo $wisata->nama_tempat; ?>" placeholder="Enter Nama Tempat">
                                 <small class="text-danger"><?php echo form_error('namatempat'); ?></small>

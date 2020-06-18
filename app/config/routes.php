@@ -77,7 +77,8 @@ $route['edit.kategori/(:num)']  = 'backend/wisata/editkategori/$1';
 $route['hapus.katwisata/(:num)']          = 'backend/wisata/delete_kategori/$1';
 
 // !User Tempat Wisata
-$route['tempat.wisata'] =  'backend/wisata/kategori';
+$route['tempat.wisata'] =  'backend/user/wisata';
+$route['pesan/(:num)'] =  'backend/booking/pesan/$1';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

@@ -91,4 +91,15 @@ class User extends CI_Controller
             }
         }
     }
+
+    public function wisata()
+    {
+        $data = array(
+            'title'     => 'Paket Wisata',
+            'left'      => 'Paket Wisata',
+            'wisata'    => $this->wisata->getAllWisata(),
+            'isi'       => 'backend/user/wisata'
+        );
+        $this->load->view('backend/template/wrap', $data, false);
+    }
 }

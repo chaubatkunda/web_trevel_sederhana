@@ -48,7 +48,7 @@
                with font-awesome or any other icon font library -->
                 <li class="nav-item">
                     <a href="<?php echo base_url('admin'); ?>" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="nav-icon fas fa-home"></i>
                         <p>
                             Dashboard
                         </p>

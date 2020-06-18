@@ -66,12 +66,13 @@ $route['profil']        = 'backend/user/profile';
 $route['gantiPassword'] = 'backend/user/gantipass';
 
 // !Paket Wisata
-$route['paketWisata']           = 'backend/wisata';
-$route['addWisata']             = 'backend/wisata/add';
-$route['edit.wisata/(:num)']    = 'backend/wisata/edit/$1';
-$route['hapus.wisata/(:num)']   = 'backend/wisata/delete/$1';
-$route['katWisata']             = 'backend/wisata/kategori';
-$route['add.kategori']          = 'backend/wisata/addkategori';
+$route['admin/tempat_wisata']           = 'backend/wisata';
+$route['admin/create_wisata']           = 'backend/wisata/add';
+$route['admin/edit.wisata/(:num)']    = 'backend/wisata/edit/$1';
+$route['admin/hapus.wisata/(:num)']   = 'backend/wisata/delete/$1';
+
+$route['admin/kategori_wisata']             = 'backend/wisata/kategori';
+$route['admin/add.kategori']          = 'backend/wisata/addkategori';
 $route['edit.kategori/(:num)']  = 'backend/wisata/editkategori/$1';
 $route['hapus.katwisata/(:num)']          = 'backend/wisata/delete_kategori/$1';
 

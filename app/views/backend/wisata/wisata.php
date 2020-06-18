@@ -6,7 +6,7 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <?php if ($this->fungsi->user_login()->role == 1) :  ?>
-                        <a href="<?php echo base_url('addWisata'); ?>" class="btn btn-outline-primary">Add <i class="fas fa-plus"></i></a>
+                        <a href="<?php echo base_url('admin/create_wisata'); ?>" class="btn btn-outline-primary">Add <i class="fas fa-plus"></i></a>
                     <?php endif; ?>
                 </div>
                 <div class="col-sm-6">
@@ -34,11 +34,9 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Tgl Publish</th>
-                                        <th>Profil</th>
-                                        <th>Tempat</th>
-                                        <th>Harga</th>
+                                        <th>Nama Tempat</th>
                                         <th>Alamat</th>
+                                        <th>Harga</th>
                                         <th>Opsi</th>
                                     </tr>
                                 </thead>
@@ -49,33 +47,17 @@
                                     ?>
                                         <tr>
                                             <td><?php echo $no++; ?></td>
-                                            <td><?php echo indoDate($ws->tgl_up); ?></td>
                                             <td><?php echo $ws->nama_tempat; ?></td>
-                                            <td><?php echo $ws->ket_wisata; ?></td>
                                             <td><?php echo $ws->alamat; ?></td>
                                             <td><?php echo indoCurrency($ws->harga); ?></td>
                                             <td>
-                                                <?php if ($this->fungsi->user_login()->role == 1) :  ?>
-                                                    <a href="<?php echo base_url('edit.wisata/') . $ws->id_wisata; ?>" class="btn btn-primary btn-sm">Edit</a>
-                                                    <a href="<?php echo base_url('hapus.wisata/') . $ws->id_wisata; ?>" class="btn btn-danger btn-sm">Hapus</a>
-                                                <?php else : ?>
-                                                    <a href="<?php echo base_url('detail.wisata/') . $ws->id_wisata; ?>" class="btn btn-outline-info btn-sm">Detail</a>
-                                                <?php endif; ?>
+                                                <a href="<?php echo base_url('admin/edit.wisata/') . $ws->id_wisata; ?>" class="btn btn-primary btn-sm">Edit</a>
+                                                <a href="<?php echo base_url('admin/hapus.wisata/') . $ws->id_wisata; ?>" class="btn btn-danger btn-sm">Hapus</a>
+                                                <a href="<?php echo base_url('admin/detail.wisata/') . $ws->id_wisata; ?>" class="btn btn-outline-info btn-sm">Detail</a>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Tgl Publish</th>
-                                        <th>Profil</th>
-                                        <th>Tempat</th>
-                                        <th>Harga</th>
-                                        <th>Alamat</th>
-                                        <th>Opsi</th>
-                                    </tr>
-                                </tfoot>
                             </table>
                         </div>
                     </div>

@@ -35,24 +35,35 @@ class Wisata extends CI_Controller
         if ($this->form_validation->run() == false) {
             $this->load->view('backend/template/wrap', $data, false);
         } else {
-            $data = [
-                'kategori_id'       => htmlspecialchars($this->input->post('kategori', true)),
-                'nama_tempat'       => htmlspecialchars($this->input->post('namatempat', true)),
-                'ket_wisata'        => htmlspecialchars($this->input->post('ketwisata', true)),
-                'alamat'            => htmlspecialchars($this->input->post('alamat', true)),
-                'harga'             => htmlspecialchars($this->input->post('harga', true))
-            ];
+            $config['upload_path'] = './public/assets/back/dist/img/wisata/';
+            $config['allowed_types'] = 'gif|jpg|jpeg|png';
+            $this->upload->initialize($config);
+            if (!$this->upload->do_upload('file')) {
+                $this->session->set_flashdata('warning', '<div class="alert alert-danger" role="alert">
+                ' . $this->upload->display_errors() . '
+              </div>');
+                redirect('admin/tempat_wisata');
+            } else {
+                $data = [
+                    'kategori_id'       => htmlspecialchars($this->input->post('kategori', true)),
+                    'nama_tempat'       => htmlspecialchars($this->input->post('namatempat', true)),
+                    'ket_wisata'        => htmlspecialchars($this->input->post('ketwisata', true)),
+                    'alamat'            => htmlspecialchars($this->input->post('alamat', true)),
+                    'harga'             => htmlspecialchars($this->input->post('harga', true)),
+                    'gambar'            => $this->upload->data('file_name'),
+                ];
+            }
             $this->wisata->insert_data($data);
             if ($this->db->affected_rows() > 0) {
                 $this->session->set_flashdata('warning', '<div class="alert alert-success" role="alert">
 				Data Berhasil Disimpan
                 </div>');
-                redirect('paketWisata');
+                redirect('admin/tempat_wisata');
             } else {
                 $this->session->set_flashdata('warning', '<div class="alert alert-danger" role="alert">
 				Data Gagal Disimpan
                 </div>');
-                redirect('paketWisata');
+                redirect('admin/tempat_wisata');
             }
         }
     }
@@ -84,7 +95,7 @@ class Wisata extends CI_Controller
             $this->session->set_flashdata('warning', '<div class="alert alert-success" role="alert">
 				Data Berhasil Diupdate
                 </div>');
-            redirect('paketWisata');
+            redirect('admin/tempat_wisata');
         }
     }
 
@@ -95,12 +106,12 @@ class Wisata extends CI_Controller
             $this->session->set_flashdata('warning', '<div class="alert alert-success" role="alert">
             Data Berhasil Dihapus
             </div>');
-            redirect('paketWisata');
+            redirect('admin/tempat_wisata');
         } else {
             $this->session->set_flashdata('warning', '<div class="alert alert-danger" role="alert">
             Data Gagal Dihapus
             </div>');
-            redirect('paketWisata');
+            redirect('admin/tempat_wisata');
         }
     }
 
@@ -128,36 +139,18 @@ class Wisata extends CI_Controller
         if ($this->form_validation->run() == false) {
             $this->load->view('backend/template/wrap', $data, false);
         } else {
-            $config['upload_path'] = './public/assets/back/dist/img/wisata/';
-            $config['allowed_types'] = 'gif|jpg|jpeg|png';
-            // $config['max_size']     = '100';
-            // $config['max_width'] = '1024';
-            // $config['max_height'] = '768';
-            $this->upload->initialize($config);
-            if (!$this->upload->do_upload('file')) {
-                // $error = array('error' => $this->upload->display_errors());
-                $this->session->set_flashdata('warning', '<div class="alert alert-danger" role="alert">
-                ' . $this->upload->display_errors() . '
-              </div>');
-                redirect('katWisata');
-            } else {
-
-                $dataw = [
-                    'jenis_kategori'    => $this->input->post('namatempat', true),
-                    'gambar'            => $this->upload->data('file_name'),
-                ];
-                $this->wisata->insert_kategori($dataw);
-                if ($this->db->affected_rows() > 0) {
-                    $this->session->set_flashdata('warning', '<div class="alert alert-success" role="alert">
+            $dataw = ['jenis_kategori'    => $this->input->post('namatempat', true)];
+            $this->wisata->insert_kategori($dataw);
+            if ($this->db->affected_rows() > 0) {
+                $this->session->set_flashdata('warning', '<div class="alert alert-success" role="alert">
                     Data Berhasil Disimpan
                   </div>');
-                    redirect('katWisata');
-                } else {
-                    $this->session->set_flashdata('warning', '<div class="alert alert-danger" role="alert">
+                redirect('admin/kategori_wisata');
+            } else {
+                $this->session->set_flashdata('warning', '<div class="alert alert-danger" role="alert">
                     Data Gagal Disimpan
                   </div>');
-                    redirect('katWisata');
-                }
+                redirect('admin/kategori_wisata');
             }
         }
     }

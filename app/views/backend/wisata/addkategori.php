@@ -20,28 +20,21 @@
     <!-- Main content -->
     <section class="content">
         <div class="row justify-content-center">
-            <div class="col-8">
+            <div class="col-6">
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">DataTable with default features</h3>
 
                     </div>
                     <!-- /.card-header -->
-                    <form action="" method="post" enctype="multipart/form-data" role="form">
+                    <form action="" method="post" role="form">
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="namatempat">Kategori</label>
                                 <input type="text" name="namatempat" class="form-control" id="namatempat" placeholder="Enter Nama Tempat">
                                 <small class="text-danger"><?php echo form_error('namatempat'); ?></small>
                             </div>
-                            <div class="form-group">
-                                <label for="file">Gambar</label>
-                                <input type="file" name="file" class="form-control">
-                                <!-- <div class="custom-file"> -->
-                                <!-- <input type="file" class="custom-file-input" id="customFile"> -->
-                                <!-- <label class="custom-file-label" for="customFile">Choose file</label> -->
-                                <!-- </div> -->
-                            </div>
+
                         </div>
                         <!-- /.card-body -->
 

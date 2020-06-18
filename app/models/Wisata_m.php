@@ -11,6 +11,10 @@ class Wisata_m extends CI_Model
     {
         return $this->db->get_where('t_wisata', ['id_wisata' => $id])->row();
     }
+    public function getAllWisataAllById($id)
+    {
+        return $this->db->get_where('t_wisata', ['kategori_id' => $id])->result();
+    }
     public function insert_data($data)
     {
         return $this->db->insert('t_wisata', $data);

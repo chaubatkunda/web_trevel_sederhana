@@ -9,5 +9,5 @@ function indoDate($date)
 
 function indoCurrency($value)
 {
-    return "Rp." . number_format($value, 0, ",", ".");
+    return "Rp" . number_format($value, 0, ",", ".");
 }

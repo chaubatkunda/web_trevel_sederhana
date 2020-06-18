@@ -64,10 +64,10 @@
                 </li>
                 <?php if ($this->fungsi->user_login()->role == 2) :  ?>
                     <li class="nav-item">
-                        <a href="<?php echo base_url('tempat.wisata'); ?>" class="nav-link">
+                        <a href="<?php echo base_url('kategori.wisata'); ?>" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
-                                Tempat Wisata
+                                Kategori Wisata
                             </p>
                         </a>
                     </li>

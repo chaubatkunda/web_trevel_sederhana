@@ -26,6 +26,6 @@ class Fungsi
         } else {
             $no = "0001";
         }
-        return "TR" . date('dmy') . $no;
+        return "#" . date('dmy') . $no;
     }
 }

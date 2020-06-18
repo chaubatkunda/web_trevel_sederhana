@@ -21,26 +21,29 @@
     <section class="content">
         <div class="row justify-content-center">
             <div class="col-6">
-                <div class="card">
+                <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">DataTable with default features</h3>
+                        <h3 class="card-title"><?php echo $title; ?></h3>
 
                     </div>
                     <!-- /.card-header -->
-                    <form action="" method="post" role="form">
+                    <form action="" method="post" enctype="multipart/form-data" role="form">
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="namatempat">Kategori</label>
                                 <input type="text" name="namatempat" class="form-control" id="namatempat" placeholder="Enter Nama Tempat">
                                 <small class="text-danger"><?php echo form_error('namatempat'); ?></small>
                             </div>
-
+                            <div class="form-group">
+                                <label for="file">Gambar</label>
+                                <input type="file" name="file" class="form-control">
+                            </div>
                         </div>
                         <!-- /.card-body -->
 
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary">Simpan <i class="far fa-paper-plane"></i></button>
-                            <a href="<?php echo base_url('paketWisata'); ?>" class="btn btn-outline-danger">Batal <i class="fas fa-window-close"></i></a>
+                            <a href="<?php echo base_url('admin/kategori_wisata'); ?>" class="btn btn-outline-danger">Batal <i class="fas fa-window-close"></i></a>
                         </div>
                     </form>
                     <!-- /.card-body -->

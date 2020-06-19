@@ -54,7 +54,7 @@
                                                         Konfirmasi Pembayaran
                                                     </span>
                                                 <?php else : ?>
-                                                    <span class="text-success">
+                                                    <span class="badge badge-success">
                                                         Aktif
                                                     </span>
                                                 <?php endif ?>

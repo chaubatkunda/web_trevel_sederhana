@@ -82,6 +82,14 @@
                     </li>
                 <?php endif; ?>
                 <?php if ($this->fungsi->user_login()->role == 1) :  ?>
+                    <li class="nav-item">
+                        <a href="<?php echo base_url('admin/wisatawan'); ?>" class="nav-link">
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>
+                                Wisatawan
+                            </p>
+                        </a>
+                    </li>
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-skiing-nordic"></i>

@@ -80,6 +80,8 @@ $route['hapus.katwisata/(:num)']          = 'backend/wisata/delete_kategori/$1';
 $route['kategori.wisata']       =  'backend/booking';
 // $route['tempat.wisata']         =  'backend/user/booking';
 $route['paket.wisata/(:num)']   =  'backend/booking/paket/$1';
+$route['booking/(:num)']        =  'backend/booking/booking_wisata/$1';
+$route['konfirmasi']            =  'backend/booking/konfirmasi';
 $route['pesan/(:num)']          =  'backend/booking/pesan/$1';
 
 $route['404_override'] = '';

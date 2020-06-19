@@ -54,6 +54,7 @@
                                         </ul>
                                     </div>
                                     <div class="col-md-6">
+                                        <h5 class="text-primary text-right"> Tanggal : <span class="badge badge-warning"><?php echo indoDate($konfirm->tgl_transaksi); ?></span></h5>
                                         <div class="form-group">
                                             <label>Invoice</label>
                                             <h5>

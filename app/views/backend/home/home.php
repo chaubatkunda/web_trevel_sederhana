@@ -33,7 +33,9 @@
                 </div>
             </div>
             <div class="card-body">
-                Start creating your amazing application!
+                Start creating your amazing application! aaa
+                <?php echo $this->fungsi->user_login()->role; ?>
+                <?php echo chek_admin(); ?>
             </div>
             <!-- /.card-body -->
             <div class="card-footer">

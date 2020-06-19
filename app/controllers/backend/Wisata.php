@@ -7,6 +7,7 @@ class Wisata extends CI_Controller
     {
         parent::__construct();
         not_login();
+        chek_admin();
     }
     public function index()
     {

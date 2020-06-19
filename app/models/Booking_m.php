@@ -11,4 +11,10 @@ class Booking_m extends CI_Model
     {
         return $this->db->get_where('t_transaksi', ['invoice' => $in])->row();
     }
+    public function getAllMyTransById($id)
+    {
+        $this->db->where('user_id', $id);
+        // $this->db->where('invoice', $in);
+        return $this->db->get_where('t_transaksi')->result();
+    }
 }

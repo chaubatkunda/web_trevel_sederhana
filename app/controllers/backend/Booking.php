@@ -3,6 +3,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Booking extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        not_login();
+        // chek_admin();
+    }
     public function index()
     {
         $data = array(
@@ -60,6 +66,19 @@ class Booking extends CI_Controller
         );
         $this->load->view('backend/template/wrap', $data, false);
     }
+    public function transaksi()
+    {
+        $id = $this->fungsi->user_login()->id_user;
+        // $in = $this->input->get('invoice', true);
+        $data = array(
+            'title'         => 'Riwayar Transaksi',
+            'left'          => 'Riwayar Transaksi',
+            'transaksi'     => $this->booking->getAllMyTransById($id),
+            'isi'           => 'backend/user/transaksi'
+        );
+        $this->load->view('backend/template/wrap', $data, false);
+    }
+
     public function pesan($id)
     {
         $data = array(

@@ -34,6 +34,7 @@
             </div>
             <div class="card-body">
                 Start creating your amazing application!
+                <?php echo $this->fungsi->user_login()->role; ?>
             </div>
             <!-- /.card-body -->
             <div class="card-footer">

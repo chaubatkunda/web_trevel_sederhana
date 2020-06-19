@@ -7,7 +7,7 @@ function is_login()
     if ($user_session) {
         if ($user_sessionl == 1) {
             redirect('admin');
-        } elseif ($user_sessionl == 2) {
+        } else {
             redirect('user');
         }
     }
@@ -25,7 +25,8 @@ function not_login()
 function chek_admin()
 {
     $log = &get_instance();
-    if ($log->fungsi->user_login->role != 1) {
+    if ($log->session->userdata('role') != 1) {
         redirect('user');
     }
+    // return $log->session->userdata('role');
 }

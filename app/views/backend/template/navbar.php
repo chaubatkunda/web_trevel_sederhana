@@ -28,6 +28,7 @@
                 <img src="<?php echo base_url('public/assets/back/dist/img/user/') . $this->fungsi->user_login()->foto; ?>" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
+
                 <?php if ($this->fungsi->user_login()->role == 1) :  ?>
                     <a href="<?php echo base_url('admin'); ?>" class="d-block"><?php echo $this->fungsi->user_login()->nama; ?></a>
                     <?php if ($this->fungsi->user_login()->is_online == 1) : ?>
@@ -72,7 +73,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="<?php echo base_url('transaksi'); ?>" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 Transaksi

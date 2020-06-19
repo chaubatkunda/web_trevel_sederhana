@@ -71,6 +71,14 @@
                             </p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                Transaksi
+                            </p>
+                        </a>
+                    </li>
                 <?php endif; ?>
                 <?php if ($this->fungsi->user_login()->role == 1) :  ?>
                     <li class="nav-item has-treeview">

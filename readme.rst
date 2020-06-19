@@ -1,6 +1,6 @@
 ########################
 Sistem Informasi Trevel
-#######################
+########################
 
 Source Code Sistem Informasi Trevel.
 

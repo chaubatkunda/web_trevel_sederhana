@@ -15,5 +15,5 @@ sesuaikan pengaturan database pada application/config/database.php.
 ***************
 User Login
 ***************
-- `Level Admin = email : admin123@gmail.com, password : admin123`_
-- `Level User = email user@gmail.com, Password : user`_
+- Level Admin = email : admin123@gmail.com, password : admin123
+- Level User = email user@gmail.com, Password : user`

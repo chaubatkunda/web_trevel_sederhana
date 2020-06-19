@@ -7,14 +7,14 @@ class Wisatawan extends CI_Controller
     {
         parent::__construct();
         not_login();
-        // chek_admin();
+        chek_admin();
     }
     public function index()
     {
         $data = array(
             'title'     => 'Wisatawan',
             'left'      => 'Wisatawan',
-            'kategori'  => $this->wisata->getAllKategotiWisata(),
+            'wisatawan' => $this->wisatawan->getAllWisatawan(),
             'isi'       => 'backend/wisatawan/home'
         );
         $this->load->view('backend/template/wrap', $data, false);

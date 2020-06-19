@@ -118,6 +118,14 @@
                                 </a>
                             </li>
                         </ul>
+                    <li class="nav-item">
+                        <a href="<?php echo base_url('admin/transaksi'); ?>" class="nav-link">
+                            <i class="fas fa-money-check-alt nav-icon"></i>
+                            <p>
+                                Transaksi
+                            </p>
+                        </a>
+                    </li>
                     </li>
                 <?php endif; ?>
                 <li class="nav-item">

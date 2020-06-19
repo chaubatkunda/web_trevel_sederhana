@@ -16,8 +16,8 @@ class Fungsi
     function kodePesanan()
     {
         $sql = "SELECT MAX(MID(invoice,9,4)) as kode_pesan 
-				FROM t_transaksi 
-				WHERE MID(invoice,3,6) = DATE_FORMAT(CURDATE(),'%d%m%y')";
+        		FROM t_transaksi 
+        		WHERE MID(invoice,3,6) = DATE_FORMAT(CURDATE(),'%d%m%y')";
         $query = $this->lb->db->query($sql);
         if ($query->num_rows() > 0) {
             $row = $query->row();

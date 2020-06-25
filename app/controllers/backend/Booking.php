@@ -64,7 +64,33 @@ class Booking extends CI_Controller
             'konfirm'   => $this->booking->getAllTransById($in),
             'isi'       => 'backend/user/konfirmasi'
         );
-        $this->load->view('backend/template/wrap', $data, false);
+
+        $this->form_validation->set_rules('nama', 'Nama Pengirim', 'trim|required');
+        $this->form_validation->set_rules('jumlah', 'Jumlah Pengirim', 'trim|required|numeric');
+        if ($this->form_validation->run() == false) {
+            $this->load->view('backend/template/wrap', $data, false);
+        } else {
+            $config['upload_path'] = './public/assets/bukti_transfer/';
+            $config['allowed_types'] = 'jpg|jpeg|png';
+            $this->upload->initialize($config);
+
+            if (!$this->upload->do_upload('gambar')) {
+                $this->session->set_flashdata('warning', '<div class="alert alert-danger" role="alert">
+                ' . $this->upload->display_errors() . '
+              </div>');
+                redirect('konfirmasi?invoice=' . $in);
+            } else {
+                $datain = [
+                    'invoice'           => $this->input->post('invoice', true),
+                    'nama_pengirim'     => $this->input->post('nama', true),
+                    'tgl_transfer'      => $this->input->post('tanggal', true),
+                    'jumlah'            => $this->input->post('jumlah', true),
+                    'bukti_transfer'    => $this->upload->data('file_name')
+                ];
+                $this->booking->insert_dettr($datain);
+                redirect('transaksi');
+            }
+        }
     }
     public function transaksi()
     {

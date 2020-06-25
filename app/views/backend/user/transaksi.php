@@ -51,16 +51,23 @@
                                             <td>
                                                 <?php if ($t->is_success !== 1) : ?>
                                                     <span class="badge badge-warning">
-                                                        Konfirmasi Pembayaran
+                                                        Pending
                                                     </span>
                                                 <?php else : ?>
                                                     <span class="badge badge-success">
-                                                        Aktif
+                                                        Success
                                                     </span>
                                                 <?php endif ?>
                                             </td>
                                             <td>
-                                                <a href="<?php echo base_url('konfirmasi?invoice=' . $t->invoice); ?>" class="btn btn-primary btn-sm">Konfirmasi</a>
+                                                <?php
+                                                $query = $this->db->get_where('t_transaksi_detail', ['invoice' => $t->invoice])->num_rows();
+                                                if ($query > 0) :
+                                                ?>
+                                                    <a href="#" class="btn btn-success btn-sm">Konfirmasi</a>
+                                                <?php else : ?>
+                                                    <a href="<?php echo base_url('konfirmasi?invoice=' . $t->invoice); ?>" class="btn btn-primary btn-sm">Konfirmasi</a>
+                                                <?php endif; ?>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>

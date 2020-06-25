@@ -26,9 +26,10 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <form action="" method="post" role="form">
+                            <form action="" method="post" role="form" enctype="multipart/form-data">
                                 <div class="row justify-content-center">
                                     <div class="col-md-6">
+                                        <?php echo $this->session->flashdata('warning'); ?>
                                         <ul class="text-text-justify">
                                             <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, cum.</li>
                                             <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, cum.</li>
@@ -63,23 +64,25 @@
                                                     <?php echo indoCurrency($konfirm->total); ?>
                                                 </span>
                                             </h5>
-                                            <input type="hidden" class="form-control" value="<?php echo $konfirm->invoice; ?>" readonly>
+                                            <input type="hidden" name="invoice" class="form-control" value="<?php echo $konfirm->invoice; ?>" readonly>
                                         </div>
                                         <div class="form-group">
                                             <label>Nama Pengirim</label>
-                                            <input type="text" class="form-control" placeholder="Nama Pengirim">
+                                            <input type="text" name="nama" class="form-control" placeholder="Nama Pengirim">
+                                            <small class="text-danger"><?php echo form_error('nama'); ?></small>
                                         </div>
                                         <div class="form-group">
                                             <label>Tanggal Transfer</label>
-                                            <input type="date" class="form-control" placeholder="Tanggal Transfer">
+                                            <input type="date" name="tanggal" class="form-control" placeholder="Tanggal Transfer">
                                         </div>
                                         <div class="form-group">
                                             <label>Jumlah Transfer</label>
-                                            <input type="text" class="form-control" placeholder="Jumlah Transfer">
+                                            <input type="text" name="jumlah" class="form-control" placeholder="Jumlah Transfer">
+                                            <small class="text-danger"><?php echo form_error('jumlah'); ?></small>
                                         </div>
                                         <div class="form-group">
                                             <label>Bukti Transfer</label>
-                                            <input type="file" class="form-control">
+                                            <input type="file" name="gambar" class="form-control">
                                         </div>
                                     </div>
                                 </div>

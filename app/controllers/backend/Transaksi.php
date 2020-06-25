@@ -11,13 +11,12 @@ class Transaksi extends CI_Controller
     }
     public function index()
     {
-        // $data = array(
-        //     'title'     => 'Wisatawan',
-        //     'left'      => 'Wisatawan',
-        //     'wisatawan' => $this->wisatawan->getAllWisatawan(),
-        //     'isi'       => 'backend/wisatawan/home'
-        // );
-        // $this->load->view('backend/template/wrap', $data, false);
-        echo "Transaksi";
+        $data = array(
+            'title'     => 'Transaksi',
+            'left'      => 'Transaksi',
+            'transaksi' => $this->transaksi->getAllTransaksi(),
+            'isi'       => 'backend/transaksi/home'
+        );
+        $this->load->view('backend/template/wrap', $data, false);
     }
 }

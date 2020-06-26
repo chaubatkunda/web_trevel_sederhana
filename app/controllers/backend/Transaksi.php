@@ -19,4 +19,15 @@ class Transaksi extends CI_Controller
         );
         $this->load->view('backend/template/wrap', $data, false);
     }
+    public function konfirmasi($id)
+    {
+        $data = array(
+            'title'     => 'Konfirmasi Pembayaran',
+            'left'      => 'Transaksi',
+            'transaksi' => $this->transaksi->getAllTransaksiById($id),
+            'detail' => $this->transaksi->getAllTransaksiDetailById($id),
+            'isi'       => 'backend/transaksi/konfirmasi'
+        );
+        $this->load->view('backend/template/wrap', $data, false);
+    }
 }

@@ -6,8 +6,10 @@ class Wisata extends CI_Controller
     public function index()
     {
         $data = array(
-            'title' => 'Destinasi',
-            'isi'   => 'wisata/home'
+            'title'     => 'Destinasi',
+            'wisata'    => $this->wisata->getAllWisata(),
+            'kategori'  => $this->wisata->getAllKategotiWisata(),
+            'isi'       => 'wisata/home'
         );
         $this->load->view('layout/wrap', $data, false);
     }

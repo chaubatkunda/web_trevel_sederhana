@@ -16,6 +16,7 @@ class Auth extends CI_Controller
     }
     private function _chek_login()
     {
+        $url = $this->input->get('url', true);
         $email = $this->input->post('email', true);
         $password = $this->input->post('password', true);
         $user = $this->user->user_login($email);
@@ -31,7 +32,7 @@ class Auth extends CI_Controller
                 if ($user->role == 1) {
                     redirect('admin');
                 } else {
-                    redirect('user');
+                    redirect($url);
                 }
             } else {
                 $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">

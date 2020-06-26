@@ -7,4 +7,12 @@ class Transaksi_m extends CI_Model
     {
         return $this->db->get_where('t_transaksi', ['is_success' => 2])->result();
     }
+    public function getAllTransaksiById($id)
+    {
+        return $this->db->get_where('t_transaksi', ['invoice' => $id])->row();
+    }
+    public function getAllTransaksiDetailById($id)
+    {
+        return $this->db->get_where('t_transaksi', ['invoice' => $id])->row();
+    }
 }

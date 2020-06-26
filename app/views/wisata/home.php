@@ -13,44 +13,24 @@
     <div class="container">
         <div class="section-intro text-center pb-90px">
             <img class="section-intro-img" src="<?php echo base_url('public/assets/fron/'); ?>img/home/section-icon.png" alt="">
-            <h2>Our Popular Services</h2>
-            <p>Fowl have fruit moveth male they are that place you will lesser</p>
+            <h2>Kategori Tempat Wisata</h2>
+            <!-- <p>Fowl have fruit moveth male they are that place you will lesser</p> -->
         </div>
 
-        <div class="row">
-            <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
-                <div class="service-card text-center">
-                    <div class="service-card-img">
-                        <img class="img-fluid" src="<?php echo base_url('public/assets/fron/'); ?>img/home/service1.png" alt="">
-                    </div>
-                    <div class="service-card-body">
-                        <h3>Hotel Booking</h3>
-                        <p>Great so dominion two seed give dry rule be fowl him female you will gathered creeping and created air</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
-                <div class="service-card text-center">
-                    <div class="service-card-img">
-                        <img class="img-fluid" src="<?php echo base_url('public/assets/fron/'); ?>img/home/service2.png" alt="">
-                    </div>
-                    <div class="service-card-body">
-                        <h3>Flight Booking</h3>
-                        <p>Great so dominion two seed give dry rule be fowl him female you will gathered creeping and created air</p>
+        <div class="row justify-content-center">
+            <?php foreach ($kategori as $k) : ?>
+                <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+                    <div class="service-card text-center">
+                        <div class="service-card-img">
+                            <img class="img-fluid" src="<?php echo base_url('public/assets/back/dist/img/kategori/' . $k->gambar); ?>" style="height: 164px;">
+                        </div>
+                        <div class="service-card-body">
+                            <h3><?php echo $k->jenis_kategori; ?></h3>
+                            <p><?php echo $k->keterangan; ?></p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
-                <div class="service-card text-center">
-                    <div class="service-card-img">
-                        <img class="img-fluid" src="<?php echo base_url('public/assets/fron/'); ?>img/home/service3.png" alt="">
-                    </div>
-                    <div class="service-card-body">
-                        <h3>Destination Booking</h3>
-                        <p>Great so dominion two seed give dry rule be fowl him female you will gathered creeping and created air</p>
-                    </div>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
     </div>
 </section>
@@ -61,91 +41,26 @@
 <section class="section-margin">
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
-                <div class="tour-card">
-                    <img class="card-img rounded-0" src="<?php echo base_url('public/assets/fron/'); ?>img/home/tour1.png" alt="">
-                    <div class="tour-card-overlay">
-                        <div class="media">
-                            <div class="media-body">
-                                <h4>Paris tour offer</h4>
-                                <small>5 days offer</small>
-                                <p>We proper guided our tourist</p>
+            <?php foreach ($wisata as $w) : ?>
+                <div class="col-md-6 col-lg-6">
+                    <div class="tour-card">
+                        <img class="card-img rounded-0" src="<?php echo base_url('public/assets/back/dist/img/wisata/' . $w->gambar); ?>">
+                        <div class="tour-card-overlay">
+                            <div class="media">
+                                <div class="media-body">
+                                    <h4><?php echo $w->nama_tempat; ?></h4>
+                                    <!-- <small>5 days offer</small> -->
+                                    <p class="text-primary"><?php echo indoCurrency($w->harga); ?>/Wisatawan</p>
+                                </div>
+                                <div class="media-price">
+                                    <p class="text-primary"><?php echo $w->ket_wisata; ?></p>
+                                </div>
                             </div>
-                            <div class="media-price">
-                                <h4 class="text-primary">$65/day</h4>
-                            </div>
-                        </div>
-                        <a href="" class="btn btn-success btn-sm">Pesan</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="row">
-                    <div class="col-lg-10 offset-lg-1">
-                        <div class="tour-content">
-                            <h2>We offer worldwise tour plan recently</h2>
-                            <p>Make she'd moved divided air. Whose tree that hath own upon them it multiply was blessed </p>
+                            <a href="<?php echo base_url('auth?url=kategori.wisata'); ?>" class="btn btn-success btn-sm">Pesan Sekarang</a>
                         </div>
                     </div>
                 </div>
-
-                <div class="tour-card">
-                    <img class="card-img rounded-0" src="<?php echo base_url('public/assets/fron/'); ?>img/home/tour2.png" alt="">
-                    <div class="tour-card-overlay">
-                        <div class="media">
-                            <div class="media-body">
-                                <h4>Paris tour offer</h4>
-                                <small>5 days offer</small>
-                                <p>We proper guided our tourist</p>
-                            </div>
-                            <div class="media-price">
-                                <h4 class="text-primary">$65/day</h4>
-                            </div>
-                        </div>
-                        <a href="" class="btn btn-success btn-sm">Pesan</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6 col-lg-7">
-                <div class="tour-card">
-                    <img class="card-img rounded-0" src="<?php echo base_url('public/assets/fron/'); ?>img/home/tour3.png" alt="">
-                    <div class="tour-card-overlay">
-                        <div class="media">
-                            <div class="media-body">
-                                <h4>Paris tour offer</h4>
-                                <small>5 days offer</small>
-                                <p>We proper guided our tourist</p>
-                            </div>
-                            <div class="media-price">
-                                <h4 class="text-primary">$65/day</h4>
-                            </div>
-                        </div>
-                        <a href="" class="btn btn-success btn-sm">Pesan</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-5">
-                <div class="tour-card">
-                    <img class="card-img rounded-0" src="<?php echo base_url('public/assets/fron/'); ?>img/home/tour4.png" alt="">
-                    <div class="tour-card-overlay">
-                        <div class="media">
-                            <div class="media-body">
-                                <h4>Paris tour offer</h4>
-                                <small>5 days offer</small>
-                                <p>We proper guided our tourist</p>
-                            </div>
-                            <div class="media-price">
-                                <h4 class="text-primary">$65/day</h4>
-                            </div>
-                        </div>
-                        <a href="" class="btn btn-success btn-sm">Pesan</a>
-                    </div>
-                </div>
-            </div>
+            <?php endforeach ?>
         </div>
     </div>
 </section>

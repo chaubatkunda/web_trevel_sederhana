@@ -14,8 +14,8 @@ class Wisata extends CI_Controller
         $data = array(
             'title'     => 'Paket Wisata',
             'left'      => 'Paket Wisata',
-            'isi'       => 'backend/wisata/wisata',
-            'wisata'    => $this->wisata->getAllWisata()
+            'wisata'    => $this->wisata->getAllWisata(),
+            'isi'       => 'backend/wisata/wisata'
         );
         $this->load->view('backend/template/wrap', $data, false);
     }

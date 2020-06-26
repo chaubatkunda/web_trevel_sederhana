@@ -78,6 +78,7 @@ $route['hapus.katwisata/(:num)']          = 'backend/wisata/delete_kategori/$1';
 
 $route['admin/wisatawan']           = 'backend/wisatawan';
 $route['admin/transaksi']           = 'backend/transaksi';
+$route['admin/konfirmasi/(:any)']           = 'backend/transaksi/konfirmasi/$1';
 
 // !User Tempat Wisata
 $route['kategori.wisata']       =  'backend/booking';
@@ -85,6 +86,7 @@ $route['kategori.wisata']       =  'backend/booking';
 $route['paket.wisata/(:num)']   =  'backend/booking/paket/$1';
 $route['booking/(:num)']        =  'backend/booking/booking_wisata/$1';
 $route['konfirmasi']            =  'backend/booking/konfirmasi';
+
 $route['transaksi']             =  'backend/booking/transaksi';
 
 $route['pesan/(:num)']          =  'backend/booking/pesan/$1';

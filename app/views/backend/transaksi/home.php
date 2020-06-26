@@ -61,7 +61,7 @@
                                                 <?php endif; ?>
                                             </td>
                                             <td>
-                                                <a href="<?php echo base_url('admin/detail.wisata/') . $t->id_transaksi; ?>" class="btn btn-primary btn-sm">Konfirmasi</a>
+                                                <a href="<?php echo base_url('admin/konfirmasi/') . $t->invoice; ?>" class="btn btn-primary btn-sm">Konfirmasi</a>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>

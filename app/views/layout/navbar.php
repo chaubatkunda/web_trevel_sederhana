@@ -21,9 +21,6 @@
                         <li class="nav-item  <?php echo $this->uri->segment(1) == 'destinasi' ? 'active' : ''; ?>">
                             <a class="nav-link" href="<?php echo base_url('destinasi'); ?>">Destinasi</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="">Blog</a>
-                        </li>
                         <li class="nav-item <?php echo $this->uri->segment(1) == 'kontak' ? 'active' : ''; ?>">
                             <a class="nav-link" href="<?php echo base_url('kontak'); ?>">Kontak</a>
                         </li>

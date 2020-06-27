@@ -85,6 +85,11 @@ $route['admin/transaksi']           = 'backend/transaksi';
 $route['admin/konfirmasi/(:any)']   = 'backend/transaksi/konfirmasi/$1';
 $route['admin/simpan_konfirmasi']   = 'backend/transaksi/simpan';
 
+$route['admin/info']   = 'backend/info';
+$route['admin/info/create']   = 'backend/info/create';
+$route['admin/info/edit/(:num)']   = 'backend/info/edit/$1';
+$route['admin/info/hapus/(:num)']   = 'backend/info/delete/$1';
+
 // !User Tempat Wisata
 $route['kategori.wisata']       =  'backend/booking';
 // $route['tempat.wisata']         =  'backend/user/booking';

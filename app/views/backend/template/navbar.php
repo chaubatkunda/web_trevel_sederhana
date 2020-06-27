@@ -119,6 +119,13 @@
                             </p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="<?php echo base_url('admin/info'); ?>" class="nav-link">
+                            <i class="fas fa-info nav-icon"></i>
+                            <p>
+                                Info
+                            </p>
+                        </a>
                     </li>
                 <?php endif; ?>
                 <li class="nav-item">

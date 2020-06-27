@@ -36,22 +36,13 @@
                                             <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, cum.</li>
                                         </ul>
                                         <ul>
-                                            <li>Bank BRI</li>
-                                            <ul>
-                                                <li>00000000000000</li>
-                                            </ul>
-                                            <li>Bank BCA</li>
-                                            <ul>
-                                                <li>00000000000000</li>
-                                            </ul>
-                                            <li>Bank Mandiri</li>
-                                            <ul>
-                                                <li>00000000000000</li>
-                                            </ul>
-                                            <li>Bank BNI</li>
-                                            <ul>
-                                                <li>00000000000000</li>
-                                            </ul>
+                                            <?php foreach ($info as $i) : ?>
+                                                <li><?php echo $i->nama_bank; ?></li>
+                                                <ul>
+                                                    <li><?php echo $i->no_rek; ?></li>
+                                                    <li><?php echo $i->nama_pemilik; ?></li>
+                                                </ul>
+                                            <?php endforeach; ?>
                                         </ul>
                                     </div>
                                     <div class="col-md-6">

@@ -32,8 +32,8 @@ class Booking extends CI_Controller
     public function booking_wisata($id)
     {
         $data = array(
-            'title'     => 'Paket Wisata',
-            'left'      => 'Paket Wisata',
+            'title'     => 'Booking Tiket',
+            'left'      => 'Booking Tiket',
             'wisata'    => $this->wisata->getAllWisataById($id),
             'isi'       => 'backend/user/booking'
         );
@@ -46,6 +46,7 @@ class Booking extends CI_Controller
                 'user_id'       => $this->input->post('id_user', true),
                 'invoice'       => $kode,
                 'wisata'       => $this->input->post('paket_wisata', true),
+                'jumlah_wisatawan'       => $this->input->post('jmlwisata', true),
                 'chek_in'       => $this->input->post('berangkat', true),
                 'chek_out'       => $this->input->post('pulang', true),
                 'harga'       => $this->input->post('totalhr', true),
@@ -61,6 +62,7 @@ class Booking extends CI_Controller
         $data = array(
             'title'     => 'Konfirmasi Pembayaran',
             'left'      => 'Paket Wisata',
+            'info'      => $this->info->getAllInfo(),
             'konfirm'   => $this->booking->getAllTransById($in),
             'isi'       => 'backend/user/konfirmasi'
         );

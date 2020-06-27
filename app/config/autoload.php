@@ -137,5 +137,6 @@ $autoload['model'] = array(
     'Wisata_m'      => 'wisata',
     'Booking_m'     => 'booking',
     'Wisatawan_m'   => 'wisatawan',
-    'Transaksi_m'   => 'transaksi'
+    'Transaksi_m'   => 'transaksi',
+    'Info_m'        => 'info'
 );

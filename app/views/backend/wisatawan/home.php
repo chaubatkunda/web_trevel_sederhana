@@ -23,52 +23,54 @@
         <!-- Default box -->
         <div class="row justify-content-center">
             <div class="col-md-10">
+                <?php echo $this->session->flashdata('warning'); ?>
                 <div class="card card-primary">
                     <div class="card-header">
                         <h3 class="card-title">
-                            <a href="" class="btn btn-warning">Add</a>
+                            <a href="<?php echo base_url('admin/wisatawan/create'); ?>" class="btn btn-warning">Add</a>
                         </h3>
                     </div>
                     <div class="card-body">
-                        <table class="table">
-                            <thead>
-                                <th>#</th>
-                                <th>Nama</th>
-                                <th>Telp</th>
-                                <th>Status</th>
-                                <th>Opsi</th>
-                            </thead>
-                            <tbody>
-                                <?php $no = 1;
-                                foreach ($wisatawan as $w) :
-                                ?>
-                                    <tr>
-                                        <td><?php echo $no++; ?></td>
-                                        <td>
-                                            <?php echo $w->nama; ?> <br>
-                                            <small class="text-primary"><?php echo $w->email; ?></small>
-                                        </td>
-                                        <td><?php echo $w->nohp; ?></td>
-                                        <td>
-                                            <?php if ($w->is_online == 1) : ?>
-                                                <span>
-                                                    <i class="fas fa-circle text-success"></i> Online
-                                                </span>
-                                            <?php else : ?>
-                                                <span>
-                                                    <i class="fas fa-circle text-danger"></i> Offline
-                                                </span>
-                                            <?php endif; ?>
-                                        </td>
-                                        <td>
-                                            <a href="" class="btn btn-info btn-sm">Detail</a>
-                                            <a href="" class="btn btn-primary btn-sm">Edit</a>
-                                            <a href="" class="btn btn-danger btn-sm">Hapus</a>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
+                        <div class="table-responsive">
+                            <table class="table" id="example1">
+                                <thead>
+                                    <th>#</th>
+                                    <th>Nama</th>
+                                    <th>Telp</th>
+                                    <th>Status</th>
+                                    <th>Opsi</th>
+                                </thead>
+                                <tbody>
+                                    <?php $no = 1;
+                                    foreach ($wisatawan as $w) :
+                                    ?>
+                                        <tr>
+                                            <td><?php echo $no++; ?></td>
+                                            <td>
+                                                <?php echo $w->nama; ?> <br>
+                                                <small class="text-primary"><?php echo $w->email; ?></small>
+                                            </td>
+                                            <td><?php echo $w->nohp; ?></td>
+                                            <td>
+                                                <?php if ($w->is_online == 1) : ?>
+                                                    <span>
+                                                        <i class="fas fa-circle text-success"></i> Online
+                                                    </span>
+                                                <?php else : ?>
+                                                    <span>
+                                                        <i class="fas fa-circle text-danger"></i> Offline
+                                                    </span>
+                                                <?php endif; ?>
+                                            </td>
+                                            <td>
+                                                <a href="<?php echo base_url('admin/wisatawan/edit/' . $w->id_user); ?>" class="btn btn-primary btn-sm">Edit</a>
+                                                <a href="<?php echo base_url('admin/wisatawan/hapus/' . $w->id_user); ?>" class="btn btn-danger btn-sm">Hapus</a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <!-- /.card-body -->
                 </div>

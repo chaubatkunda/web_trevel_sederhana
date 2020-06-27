@@ -68,15 +68,19 @@ $route['gantiPassword'] = 'backend/user/gantipass';
 // !Paket Wisata
 $route['admin/tempat_wisata']           = 'backend/wisata';
 $route['admin/create_wisata']           = 'backend/wisata/add';
-$route['admin/edit.wisata/(:num)']    = 'backend/wisata/edit/$1';
-$route['admin/hapus.wisata/(:num)']   = 'backend/wisata/delete/$1';
+$route['admin/edit.wisata/(:num)']      = 'backend/wisata/edit/$1';
+$route['admin/hapus.wisata/(:num)']     = 'backend/wisata/delete/$1';
 
-$route['admin/kategori_wisata']             = 'backend/wisata/kategori';
-$route['admin/add.kategori']          = 'backend/wisata/addkategori';
-$route['edit.kategori/(:num)']  = 'backend/wisata/editkategori/$1';
-$route['hapus.katwisata/(:num)']          = 'backend/wisata/delete_kategori/$1';
+$route['admin/kategori_wisata']         = 'backend/wisata/kategori';
+$route['admin/add.kategori']            = 'backend/wisata/addkategori';
+$route['edit.kategori/(:num)']          = 'backend/wisata/editkategori/$1';
+$route['hapus.katwisata/(:num)']        = 'backend/wisata/delete_kategori/$1';
 
 $route['admin/wisatawan']           = 'backend/wisatawan';
+$route['admin/wisatawan/create']    = 'backend/wisatawan/create';
+$route['admin/wisatawan/edit/(:num)']    = 'backend/wisatawan/edit/$1';
+$route['admin/wisatawan/hapus/(:num)']    = 'backend/wisatawan/delete/$1';
+
 $route['admin/transaksi']           = 'backend/transaksi';
 $route['admin/konfirmasi/(:any)']   = 'backend/transaksi/konfirmasi/$1';
 $route['admin/simpan_konfirmasi']   = 'backend/transaksi/simpan';

@@ -1,197 +1,102 @@
--- phpMyAdmin SQL Dump
--- version 5.0.1
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Waktu pembuatan: 19 Jun 2020 pada 02.36
--- Versi server: 10.4.6-MariaDB
--- Versi PHP: 7.3.9
+-- Adminer 4.7.6 MySQL dump
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
+SET NAMES utf8;
+SET time_zone = '+00:00';
+SET foreign_key_checks = 0;
+SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `dbparawisata`
---
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `t_alat_camp`
---
-
-CREATE TABLE `t_alat_camp` (
-  `id_alat` int(11) DEFAULT NULL,
-  `tgl_up` datetime DEFAULT current_timestamp(),
-  `p_alat` int(11) DEFAULT NULL,
-  `ket_p` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `t_kategori_wisata`
---
-
+DROP TABLE IF EXISTS `t_kategori_wisata`;
 CREATE TABLE `t_kategori_wisata` (
-  `id_kategori` int(11) NOT NULL,
-  `tgl_up` datetime DEFAULT current_timestamp(),
+  `id_kategori` int(11) NOT NULL AUTO_INCREMENT,
+  `tgl_up` datetime DEFAULT CURRENT_TIMESTAMP,
   `jenis_kategori` varchar(255) DEFAULT NULL,
-  `gambar` varchar(255) DEFAULT NULL
+  `keterangan` text,
+  `gambar` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id_kategori`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data untuk tabel `t_kategori_wisata`
---
+INSERT INTO `t_kategori_wisata` (`id_kategori`, `tgl_up`, `jenis_kategori`, `keterangan`, `gambar`) VALUES
+(8,	'2020-06-19 02:52:43',	'Pantai',	'sdsds sdsds sdsdsd',	'jembatan.jpeg'),
+(9,	'2020-06-19 03:03:43',	'Gunung',	'sdsdsd sdsd sdsd sdsd sdsds sdsd',	'wisatagunung.jpeg');
 
-INSERT INTO `t_kategori_wisata` (`id_kategori`, `tgl_up`, `jenis_kategori`, `gambar`) VALUES
-(8, '2020-06-19 02:52:43', 'Pantai', 'jembatan.jpeg'),
-(9, '2020-06-19 03:03:43', 'Gunung', 'wisatagunung.jpeg');
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `t_transaksi`
---
-
+DROP TABLE IF EXISTS `t_transaksi`;
 CREATE TABLE `t_transaksi` (
-  `id_transaksi` int(11) NOT NULL,
-  `tgl_transaksi` datetime DEFAULT current_timestamp(),
+  `id_transaksi` int(11) NOT NULL AUTO_INCREMENT,
+  `tgl_transaksi` datetime DEFAULT CURRENT_TIMESTAMP,
   `user_id` int(11) DEFAULT NULL,
   `invoice` char(50) DEFAULT NULL,
   `wisata` varchar(255) DEFAULT NULL,
+  `jumlah_wisatawan` int(11) DEFAULT NULL,
   `chek_in` date DEFAULT NULL,
   `chek_out` date DEFAULT NULL,
   `harga` int(11) DEFAULT NULL,
-  `total` int(11) DEFAULT NULL
+  `total` int(11) DEFAULT NULL,
+  `is_success` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_transaksi`),
+  KEY `invoice` (`invoice`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data untuk tabel `t_transaksi`
---
+INSERT INTO `t_transaksi` (`id_transaksi`, `tgl_transaksi`, `user_id`, `invoice`, `wisata`, `jumlah_wisatawan`, `chek_in`, `chek_out`, `harga`, `total`, `is_success`) VALUES
+(3,	'2020-06-19 06:32:39',	3,	'in1906200001',	'Semeru',	10,	'2020-06-20',	'2020-06-22',	50000,	500000,	1),
+(6,	'2020-06-19 07:19:17',	3,	'in1906200002',	'Bromo',	2,	'2020-06-25',	'2020-07-01',	20000,	500000,	2),
+(10,	'2020-06-20 01:17:13',	4,	'in2006200001',	'Pantai Tiga Warna',	10,	'2020-06-24',	'2020-07-01',	150000,	1500000,	2);
 
-INSERT INTO `t_transaksi` (`id_transaksi`, `tgl_transaksi`, `user_id`, `invoice`, `wisata`, `chek_in`, `chek_out`, `harga`, `total`) VALUES
-(3, '2020-06-19 06:32:39', 3, 'in1906200001', 'Semeru', '2020-06-20', '2020-06-22', 50000, 500000),
-(6, '2020-06-19 07:19:17', 3, 'in1906200002', 'Bromo', '2020-06-25', '2020-07-01', 20000, 500000);
+DROP TABLE IF EXISTS `t_transaksi_detail`;
+CREATE TABLE `t_transaksi_detail` (
+  `id_det` int(11) NOT NULL AUTO_INCREMENT,
+  `tgl_bayar` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `invoice` char(50) DEFAULT NULL,
+  `nama_pengirim` varchar(255) DEFAULT NULL,
+  `tgl_transfer` date DEFAULT NULL,
+  `jumlah` int(11) DEFAULT NULL,
+  `bukti_transfer` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id_det`),
+  KEY `invoice` (`invoice`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
+INSERT INTO `t_transaksi_detail` (`id_det`, `tgl_bayar`, `invoice`, `nama_pengirim`, `tgl_transfer`, `jumlah`, `bukti_transfer`) VALUES
+(1,	'2020-06-26 00:00:00',	'in1906200001',	'User',	'2020-06-26',	500000,	'Capture.JPG'),
+(2,	'2020-06-26 00:00:00',	'in2006200001',	'Alan',	'2020-06-25',	1500000,	'git.JPG');
 
---
--- Struktur dari tabel `t_user`
---
-
+DROP TABLE IF EXISTS `t_user`;
 CREATE TABLE `t_user` (
-  `id_user` int(11) NOT NULL,
-  `tgl_daftar` datetime DEFAULT current_timestamp(),
+  `id_user` int(11) NOT NULL AUTO_INCREMENT,
+  `tgl_daftar` datetime DEFAULT CURRENT_TIMESTAMP,
   `email` varchar(125) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `nama` varchar(255) DEFAULT NULL,
   `nohp` varchar(255) DEFAULT NULL,
-  `alamat` text DEFAULT NULL,
+  `alamat` text,
   `role` int(11) DEFAULT NULL,
   `foto` varchar(255) DEFAULT NULL,
-  `is_online` int(11) DEFAULT NULL
+  `is_online` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `t_user`
---
 
 INSERT INTO `t_user` (`id_user`, `tgl_daftar`, `email`, `password`, `nama`, `nohp`, `alamat`, `role`, `foto`, `is_online`) VALUES
-(1, '2020-04-26 07:46:31', 'maniklusi31@gmail.com', '$2y$10$Es8vTyN71bTzpXxKwMYpseB.POMUIt3.mCoG.gYyX.Me3c4iBCdue', 'Chau Batkunda', '081359132126', 'Malang.', 1, 'default.png', 1),
-(3, '2020-06-18 22:44:28', 'user@gmail.com', '$2y$10$KyzLOk.LLP5CnBWJz/2H/.6AWdALv9xLRFkp9KEmi8gHrdSHmU6kK', 'User', '081247046058', 'Malang', 2, 'default.png', 1);
+(1,	'2020-04-26 07:46:31',	'admin123@gmail.com',	'$2y$10$El8MlN5otlUAXik3GlLGfu6Sd.wu0Dlf75GzTNMpdhJstUT4JBPA.',	'Admin123',	'081359132126',	'Malang.',	1,	'default.png',	1),
+(3,	'2020-06-18 22:44:28',	'user@gmail.com',	'$2y$10$KyzLOk.LLP5CnBWJz/2H/.6AWdALv9xLRFkp9KEmi8gHrdSHmU6kK',	'User',	'081247046058',	'Malang',	2,	'default.png',	0),
+(4,	'2020-06-19 21:51:24',	'alan@gmail.com',	'$2y$10$LVyHa4MgAs6RmOLD7qKo..QDYN14Ld7WMyBQUz4X7JOyb0/HsPAXq',	'Alan',	'081247046058',	NULL,	2,	'default.png',	0),
+(5,	'2020-06-27 12:24:43',	'adam@gmail.com',	'$2y$10$YWQs9Ar3gOK6ClMfmtwATeBzud9DY5RsA721nZ3y7Z1RGu3QyBlW2',	'Adam',	'081247046058',	'',	2,	'default.png',	0),
+(6,	'2020-06-27 12:27:42',	'catur@gmail.com',	'$2y$10$MlV1CH8QZucKn.XIzfQdfuJbmklTq0AKSwqy5fTaeG3a0GIMjlEyG',	'Catur',	'081247046058',	'Malang',	2,	'default.png',	0);
 
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `t_wisata`
---
-
+DROP TABLE IF EXISTS `t_wisata`;
 CREATE TABLE `t_wisata` (
-  `id_wisata` int(11) NOT NULL,
-  `kategori_id` int(11) NOT NULL DEFAULT 0,
-  `tgl_up` datetime NOT NULL DEFAULT current_timestamp(),
+  `id_wisata` int(11) NOT NULL AUTO_INCREMENT,
+  `kategori_id` int(11) NOT NULL DEFAULT '0',
+  `tgl_up` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `nama_tempat` varchar(255) DEFAULT NULL,
   `ket_wisata` varchar(255) DEFAULT NULL,
-  `alamat` text DEFAULT NULL,
+  `alamat` text,
   `harga` int(11) DEFAULT NULL,
-  `gambar` varchar(255) DEFAULT NULL
+  `gambar` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id_wisata`),
+  KEY `kategori_id` (`kategori_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data untuk tabel `t_wisata`
---
-
 INSERT INTO `t_wisata` (`id_wisata`, `kategori_id`, `tgl_up`, `nama_tempat`, `ket_wisata`, `alamat`, `harga`, `gambar`) VALUES
-(9, 9, '2020-06-19 03:14:12', 'Bromo', 'Wisata Bromo', 'Bromo', 20000, 'Bromo.jpg'),
-(10, 9, '2020-06-19 03:24:13', 'Semeru', 'Semeru', 'Jawa Timur', 50000, 'wisatagunung.jpeg');
+(9,	9,	'2020-06-19 03:14:12',	'Bromo',	'Wisata Bromo',	'Bromo',	20000,	'Bromo.jpg'),
+(10,	9,	'2020-06-19 03:24:13',	'Semeru',	'Semeru',	'Jawa Timur',	50000,	'wisatagunung.jpeg'),
+(11,	8,	'2020-06-20 00:52:55',	'Pantai Tiga Warna Malang',	'Pantai Tigas Warna Merupakan Pantai ... ....',	'Malang Jawa Timur',	150000,	'3_warna.jpg');
 
---
--- Indexes for dumped tables
---
-
---
--- Indeks untuk tabel `t_kategori_wisata`
---
-ALTER TABLE `t_kategori_wisata`
-  ADD PRIMARY KEY (`id_kategori`);
-
---
--- Indeks untuk tabel `t_transaksi`
---
-ALTER TABLE `t_transaksi`
-  ADD PRIMARY KEY (`id_transaksi`);
-
---
--- Indeks untuk tabel `t_user`
---
-ALTER TABLE `t_user`
-  ADD PRIMARY KEY (`id_user`);
-
---
--- Indeks untuk tabel `t_wisata`
---
-ALTER TABLE `t_wisata`
-  ADD PRIMARY KEY (`id_wisata`),
-  ADD KEY `kategori_id` (`kategori_id`);
-
---
--- AUTO_INCREMENT untuk tabel yang dibuang
---
-
---
--- AUTO_INCREMENT untuk tabel `t_kategori_wisata`
---
-ALTER TABLE `t_kategori_wisata`
-  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT untuk tabel `t_transaksi`
---
-ALTER TABLE `t_transaksi`
-  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT untuk tabel `t_user`
---
-ALTER TABLE `t_user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT untuk tabel `t_wisata`
---
-ALTER TABLE `t_wisata`
-  MODIFY `id_wisata` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+-- 2020-06-27 07:37:58

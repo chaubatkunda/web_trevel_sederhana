@@ -11,9 +11,12 @@ class User extends CI_Controller
     }
     public function index()
     {
+        $user = $this->fungsi->user_login()->id_user;
         $data = array(
             'title' => 'User',
             'left'  => 'Dashboard',
+            'kategori'  => $this->db->get('t_kategori_wisata')->num_rows(),
+            'transaksi'  => $this->db->get_where('t_transaksi', ['user_id' => $user])->num_rows(),
             'isi'   => 'backend/user/user'
         );
         $this->load->view('backend/template/wrap', $data, false);
@@ -60,7 +63,7 @@ class User extends CI_Controller
         if ($this->form_validation->run() == false) {
             $this->load->view('backend/template/wrap', $data, false);
         } else {
-            $email      = $this->input->post('email', true);
+            $email    = $this->input->post('email', true);
             $passlama = $this->fungsi->user_login()->password;
             $password = $this->input->post('password', true);
             $passbaru = $this->input->post('password1', true);

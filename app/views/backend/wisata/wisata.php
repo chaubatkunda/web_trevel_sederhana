@@ -49,11 +49,10 @@
                                             <td><?php echo $no++; ?></td>
                                             <td><?php echo $ws->nama_tempat; ?></td>
                                             <td><?php echo $ws->alamat; ?></td>
-                                            <td><?php echo indoCurrency($ws->harga); ?></td>
+                                            <td class="text-right"><?php echo indoCurrency($ws->harga); ?></td>
                                             <td>
                                                 <a href="<?php echo base_url('admin/edit.wisata/') . $ws->id_wisata; ?>" class="btn btn-primary btn-sm">Edit</a>
                                                 <a href="<?php echo base_url('admin/hapus.wisata/') . $ws->id_wisata; ?>" class="btn btn-danger btn-sm">Hapus</a>
-                                                <a href="<?php echo base_url('admin/detail.wisata/') . $ws->id_wisata; ?>" class="btn btn-outline-info btn-sm">Detail</a>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>

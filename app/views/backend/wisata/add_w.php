@@ -21,9 +21,9 @@
     <section class="content">
         <div class="row justify-content-center">
             <div class="col-6">
-                <div class="card">
+                <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">DataTable with default features</h3>
+                        <!-- <h3 class="card-title">DataTable with default features</h3> -->
                     </div>
                     <!-- /.card-header -->
                     <form action="" method="post" enctype="multipart/form-data" role="form">
@@ -33,7 +33,7 @@
                                 <select name="kategori" id="" class="form-control">
                                     <option value="">Pilih Kategori</option>
                                     <?php foreach ($kategori as $k) : ?>
-                                        <option value="<?php echo $k->id_kategori; ?>hpp"><?php echo $k->jenis_kategori; ?></option>
+                                        <option value="<?php echo $k->id_kategori; ?>"><?php echo $k->jenis_kategori; ?></option>
                                     <?php endforeach; ?>
                                 </select>
                                 <small class="text-danger"><?php echo form_error('namatempat'); ?></small>

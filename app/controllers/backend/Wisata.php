@@ -85,34 +85,79 @@ class Wisata extends CI_Controller
         if ($this->form_validation->run() == false) {
             $this->load->view('backend/template/wrap', $data, false);
         } else {
-            $data = [
-                'kategori_id'       => htmlspecialchars($this->input->post('kategori', true)),
-                'nama_tempat'       => htmlspecialchars($this->input->post('namatempat', true)),
-                'ket_wisata'        => htmlspecialchars($this->input->post('ketwisata', true)),
-                'alamat'            => htmlspecialchars($this->input->post('alamat', true)),
-                'harga'             => htmlspecialchars($this->input->post('harga', true))
-            ];
-            $this->wisata->update_data($id, $data);
-            $this->session->set_flashdata('warning', '<div class="alert alert-success" role="alert">
-				Data Berhasil Diupdate
-                </div>');
-            redirect('admin/tempat_wisata');
+            $config['upload_path'] = './public/assets/back/dist/img/wisata/';
+            $config['allowed_types'] = 'gif|jpg|jpeg|png';
+            $this->upload->initialize($config);
+            if (!$this->upload->do_upload('file')) {
+                $data = [
+                    'kategori_id'       => htmlspecialchars($this->input->post('kategori', true)),
+                    'nama_tempat'       => htmlspecialchars($this->input->post('namatempat', true)),
+                    'ket_wisata'        => htmlspecialchars($this->input->post('ketwisata', true)),
+                    'alamat'            => htmlspecialchars($this->input->post('alamat', true)),
+                    'harga'             => htmlspecialchars($this->input->post('harga', true))
+                ];
+                $this->wisata->update_data($id, $data);
+                redirect('admin/tempat_wisata');
+            } else {
+                $data = [
+                    'kategori_id'       => htmlspecialchars($this->input->post('kategori', true)),
+                    'nama_tempat'       => htmlspecialchars($this->input->post('namatempat', true)),
+                    'ket_wisata'        => htmlspecialchars($this->input->post('ketwisata', true)),
+                    'alamat'            => htmlspecialchars($this->input->post('alamat', true)),
+                    'harga'             => htmlspecialchars($this->input->post('harga', true)),
+                    'gambar'            => $this->upload->data('file_name')
+                ];
+                $folder = FCPATH . './public/assets/back/dist/img/wisata/';
+                $file = $data['wisata']->gambar;
+                $upload = $folder . $file;
+                if (@unlink($upload)) {
+                    $this->wisata->update_data($id, $data);
+                    $this->session->set_flashdata('warning', '<div class="alert alert-success" role="alert">
+                            Data Berhasil Diupdate
+                          </div>');
+                    redirect('admin/tempat_wisata');
+                } else {
+                    $this->session->set_flashdata('warning', '<div class="alert alert-success" role="alert">
+                        Gambar Tidak ditemukan
+                      </div>');
+                    redirect('admin/tempat_wisata');
+                }
+            }
         }
     }
 
     public function delete($id)
     {
-        $this->wisata->delete_data($id);
-        if ($this->db->affected_rows() > 0) {
-            $this->session->set_flashdata('warning', '<div class="alert alert-success" role="alert">
-            Data Berhasil Dihapus
-            </div>');
-            redirect('admin/tempat_wisata');
+        $query = $this->wisata->getAllWisataById($id);
+        $folder = FCPATH . './public/assets/back/dist/img/wisata/';
+        $file = $query->gambar;
+        $upload = $folder . $file;
+        if (@unlink($upload)) {
+            $this->wisata->delete_data($id);
+            if ($this->db->affected_rows() > 0) {
+                $this->session->set_flashdata('warning', '<div class="alert alert-success" role="alert">
+                Data Berhasil Dihapus
+              </div>');
+                redirect('admin/tempat_wisata');
+            } else {
+                $this->session->set_flashdata('warning', '<div class="alert alert-danger" role="alert">
+                Data Gagal Dihapus
+              </div>');
+                redirect('admin/tempat_wisata');
+            }
         } else {
-            $this->session->set_flashdata('warning', '<div class="alert alert-danger" role="alert">
-            Data Gagal Dihapus
-            </div>');
-            redirect('admin/tempat_wisata');
+            $this->wisata->delete_data($id);
+            if ($this->db->affected_rows() > 0) {
+                $this->session->set_flashdata('warning', '<div class="alert alert-success" role="alert">
+                Data Berhasil Dihapus
+              </div>');
+                redirect('admin/tempat_wisata');
+            } else {
+                $this->session->set_flashdata('warning', '<div class="alert alert-danger" role="alert">
+                Data Gagal Dihapus
+              </div>');
+                redirect('admin/tempat_wisata');
+            }
         }
     }
 

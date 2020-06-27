@@ -20,22 +20,22 @@
     <!-- Main content -->
     <section class="content">
         <div class="row justify-content-center">
-            <div class="col-8">
-                <div class="card">
+            <div class="col-6">
+                <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">DataTable with default features</h3>
+                        <!-- <h3 class="card-title">DataTable with default features</h3> -->
                     </div>
                     <!-- /.card-header -->
-                    <form action="" method="POST" role="form">
+                    <form action="" method="post" enctype="multipart/form-data" role="form">
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="namatempat">Kategori</label>
                                 <select name="kategori" id="" class="form-control">
                                     <?php foreach ($kategori as $k) : ?>
                                         <?php if ($k->id_kategori == $wisata->kategori_id) : ?>
-                                            <option selected value="<?php echo $k->id_kategori; ?>hpp"><?php echo $k->jenis_kategori; ?></option>
+                                            <option value="<?php echo $k->id_kategori; ?>" selected><?php echo $k->jenis_kategori; ?></option>
                                         <?php else : ?>
-                                            <option value="<?php echo $k->id_kategori; ?>hpp"><?php echo $k->jenis_kategori; ?></option>
+                                            <option value="<?php echo $k->id_kategori; ?>"><?php echo $k->jenis_kategori; ?></option>
                                         <?php endif; ?>
                                     <?php endforeach; ?>
                                 </select>
@@ -43,11 +43,16 @@
                             </div>
                             <div class="form-group">
                                 <label for="namatempat">Nama Tempat</label>
-                                <input type="text" name="namatempat" class="form-control" id="namatempat" value="<?php echo $wisata->nama_tempat; ?>" placeholder="Enter Nama Tempat">
+                                <input type="text" name="namatempat" class="form-control" id="namatempat" placeholder="Enter Nama Tempat" value="<?php echo $wisata->nama_tempat; ?>">
                                 <small class="text-danger"><?php echo form_error('namatempat'); ?></small>
                             </div>
                             <div class="form-group">
-                                <label for="ketwisata">Ket Wisata</label>
+                                <label for="Harga">Harga</label>
+                                <input type="text" name="harga" class="form-control" id="Harga" placeholder="Enter Harga" value="<?php echo $wisata->harga; ?>">
+                                <small class="text-danger"><?php echo form_error('harga'); ?></small>
+                            </div>
+                            <div class="form-group">
+                                <label for="ketwisata">Keterangan</label>
                                 <textarea name="ketwisata" id="" cols="10" class="form-control" placeholder="Keterangan Wisata"><?php echo $wisata->ket_wisata; ?></textarea>
                                 <small class="text-danger"><?php echo form_error('ketwisata'); ?></small>
                             </div>
@@ -57,16 +62,15 @@
                                 <small class="text-danger"><?php echo form_error('alamat'); ?></small>
                             </div>
                             <div class="form-group">
-                                <label for="Harga">Harga</label>
-                                <input type="text" name="harga" class="form-control" id="Harga" placeholder="Enter Harga" value="<?php echo $wisata->harga; ?>">
-                                <small class="text-danger"><?php echo form_error('harga'); ?></small>
+                                <label for="file">Gambar</label>
+                                <input type="file" name="file" class="form-control">
                             </div>
                         </div>
                         <!-- /.card-body -->
 
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary">Simpan <i class="far fa-paper-plane"></i></button>
-                            <a href="<?php echo base_url('paketWisata'); ?>" class="btn btn-outline-danger">Batal <i class="fas fa-window-close"></i></a>
+                            <a href="<?php echo base_url('admin/tempat_wisata'); ?>" class="btn btn-outline-danger">Batal <i class="fas fa-window-close"></i></a>
                         </div>
                     </form>
                     <!-- /.card-body -->

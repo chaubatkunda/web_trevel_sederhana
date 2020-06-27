@@ -73,8 +73,8 @@ $route['admin/hapus.wisata/(:num)']     = 'backend/wisata/delete/$1';
 
 $route['admin/kategori_wisata']         = 'backend/wisata/kategori';
 $route['admin/add.kategori']            = 'backend/wisata/addkategori';
-$route['edit.kategori/(:num)']          = 'backend/wisata/editkategori/$1';
-$route['hapus.katwisata/(:num)']        = 'backend/wisata/delete_kategori/$1';
+$route['admin/edit.kategori/(:num)']          = 'backend/wisata/editkategori/$1';
+$route['admin/hapus.katwisata/(:num)']        = 'backend/wisata/delete_kategori/$1';
 
 $route['admin/wisatawan']           = 'backend/wisatawan';
 $route['admin/wisatawan/create']    = 'backend/wisatawan/create';

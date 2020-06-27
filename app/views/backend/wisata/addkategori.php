@@ -35,6 +35,11 @@
                                 <small class="text-danger"><?php echo form_error('namatempat'); ?></small>
                             </div>
                             <div class="form-group">
+                                <label for="ket">Keterangan</label>
+                                <textarea name="ket" id="ket" cols="10" class="form-control" placeholder="Keterangan"></textarea>
+                                <small class="text-danger"><?php echo form_error('ket'); ?></small>
+                            </div>
+                            <div class="form-group">
                                 <label for="file">Gambar</label>
                                 <input type="file" name="file" class="form-control">
                             </div>

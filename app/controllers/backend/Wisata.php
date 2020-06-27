@@ -181,6 +181,7 @@ class Wisata extends CI_Controller
             'ktwisata'  => $this->wisata->getAllKategotiWisata()
         );
         $this->form_validation->set_rules('namatempat', 'Nama Tempat', 'trim|required');
+        $this->form_validation->set_rules('ket', 'Keterangan', 'trim|required');
         if ($this->form_validation->run() == false) {
             $this->load->view('backend/template/wrap', $data, false);
         } else {
@@ -197,6 +198,7 @@ class Wisata extends CI_Controller
             } else {
                 $dataw = [
                     'jenis_kategori'    => $this->input->post('namatempat', true),
+                    'keterangan'        => $this->input->post('ket', true),
                     'gambar'            => $this->upload->data('file_name')
                 ];
                 $this->wisata->insert_kategori($dataw);
@@ -232,33 +234,34 @@ class Wisata extends CI_Controller
             if (!$this->upload->do_upload('file')) {
                 $dataw = [
                     'jenis_kategori'    => $this->input->post('namatempat', true),
-                    'gambar'            => $this->upload->data('file_name')
+                    'keterangan'        => $this->input->post('ket', true),
                 ];
                 $this->wisata->update_kategori($id, $dataw);
                 $this->session->set_flashdata('warning', '<div class="alert alert-success" role="alert">
                     Data Berhasil Diupdate
                   </div>');
-                redirect('katWisata');
+                redirect('admin/kategori_wisata');
             } else {
                 $query = $this->wisata->getAllKategoryById($id);
-                $folder = FCPATH . './public/assets/back/dist/img/wisata/';
+                $folder = FCPATH . './public/assets/back/dist/img/kategori/';
                 $file = $query->gambar;
                 $upload = $folder . $file;
                 if (@unlink($upload)) {
                     $dataw = [
                         'jenis_kategori'    => $this->input->post('namatempat', true),
-                        'gambar'            => $this->upload->data('file_name'),
+                        'keterangan'        => $this->input->post('ket', true),
+                        'gambar'            => $this->upload->data('file_name')
                     ];
                     $this->wisata->update_kategori($id, $dataw);
                     $this->session->set_flashdata('warning', '<div class="alert alert-success" role="alert">
                         Data Berhasil Diupdate
                       </div>');
-                    redirect('katWisata');
+                    redirect('admin/kategori_wisata');
                 } else {
                     $this->session->set_flashdata('warning', '<div class="alert alert-success" role="alert">
                     Gambar Tidak ditemukan
                   </div>');
-                    redirect('katWisata');
+                    redirect('admin/kategori_wisata');
                 }
             }
         }
@@ -266,7 +269,7 @@ class Wisata extends CI_Controller
     public function delete_kategori($id)
     {
         $query = $this->wisata->getAllKategoryById($id);
-        $folder = FCPATH . './public/assets/back/dist/img/wisata/';
+        $folder = FCPATH . './public/assets/back/dist/img/kategori/';
         $file = $query->gambar;
         $upload = $folder . $file;
         if (@unlink($upload)) {
@@ -275,12 +278,12 @@ class Wisata extends CI_Controller
                 $this->session->set_flashdata('warning', '<div class="alert alert-success" role="alert">
                 Data Berhasil Dihapus
               </div>');
-                redirect('katWisata');
+                redirect('admin/kategori_wisata');
             } else {
                 $this->session->set_flashdata('warning', '<div class="alert alert-danger" role="alert">
                 Data Gagal Dihapus
               </div>');
-                redirect('katWisata');
+                redirect('admin/kategori_wisata');
             }
         } else {
             $this->wisata->delete_kategori($id);
@@ -288,12 +291,12 @@ class Wisata extends CI_Controller
                 $this->session->set_flashdata('warning', '<div class="alert alert-success" role="alert">
                 Data Berhasil Dihapus
               </div>');
-                redirect('katWisata');
+                redirect('admin/kategori_wisata');
             } else {
                 $this->session->set_flashdata('warning', '<div class="alert alert-danger" role="alert">
                 Data Gagal Dihapus
               </div>');
-                redirect('katWisata');
+                redirect('admin/kategori_wisata');
             }
         }
     }

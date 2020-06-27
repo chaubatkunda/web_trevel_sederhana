@@ -62,7 +62,6 @@
                                             <td>
                                                 <a href="<?php echo base_url('admin/edit.kategori/') . $kt->id_kategori; ?>" class="btn btn-primary btn-sm">Edit</a>
                                                 <a href="<?php echo base_url('admin/hapus.katwisata/') . $kt->id_kategori; ?>" class="btn btn-danger btn-sm">Hapus</a>
-                                                <a href="" class="btn btn-info btn-sm">Detail</a>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>

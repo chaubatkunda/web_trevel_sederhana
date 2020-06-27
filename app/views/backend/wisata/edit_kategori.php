@@ -20,10 +20,10 @@
     <!-- Main content -->
     <section class="content">
         <div class="row justify-content-center">
-            <div class="col-8">
-                <div class="card">
+            <div class="col-6">
+                <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">DataTable with default features</h3>
+                        <!-- <h3 class="card-title">DataTable with default features</h3> -->
 
                     </div>
                     <!-- /.card-header -->
@@ -33,6 +33,11 @@
                                 <label for="namatempat">Kategori</label>
                                 <input type="text" name="namatempat" class="form-control" value="<?php echo $ktwisata->jenis_kategori; ?>" id="namatempat" placeholder="Enter Nama Tempat">
                                 <small class="text-danger"><?php echo form_error('namatempat'); ?></small>
+                            </div>
+                            <div class="form-group">
+                                <label for="ket">Keterangan</label>
+                                <textarea name="ket" id="ket" cols="10" class="form-control" placeholder="Keterangan"><?php echo $ktwisata->keterangan; ?></textarea>
+                                <small class="text-danger"><?php echo form_error('ket'); ?></small>
                             </div>
                             <div class="form-group">
                                 <label for="file">Gambar</label>

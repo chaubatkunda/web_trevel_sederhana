@@ -55,13 +55,22 @@
                                             </td>
                                             <td>
                                                 <?php if ($t->is_success == 1) : ?>
-                                                    <span class="text-success">Konfirmasi</span>
+                                                    <span class="text-success">Verify</span>
                                                 <?php else : ?>
                                                     <span class="text-warning">Pending</span>
                                                 <?php endif; ?>
                                             </td>
                                             <td>
-                                                <a href="<?php echo base_url('admin/konfirmasi/') . $t->invoice; ?>" class="btn btn-primary btn-sm">Konfirmasi</a>
+                                                <?php $query = $this->db->get_where('t_transaksi_detail', ['invoice' => $t->invoice])->num_rows(); ?>
+                                                <?php if ($t->is_success == 1) : ?>
+                                                    <a href=#" class="btn btn-success btn-sm">Verify</a>
+                                                <?php else : ?>
+                                                    <?php if ($query > 0) : ?>
+                                                        <a href="<?php echo base_url('admin/konfirmasi/') . $t->invoice; ?>" class="btn btn-primary btn-sm">Konfirmasi</a>
+                                                    <?php else : ?>
+                                                        <a href="#" class="btn btn-warning btn-sm">Belum Konfirmasi</a>
+                                                    <?php endif; ?>
+                                                <?php endif; ?>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>

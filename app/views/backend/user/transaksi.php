@@ -49,13 +49,13 @@
                                             <td><b>#<?php echo $t->invoice; ?></b></td>
                                             <td><?php echo indoCurrency($t->harga); ?></td>
                                             <td>
-                                                <?php if ($t->is_success !== 1) : ?>
-                                                    <span class="badge badge-warning">
-                                                        Pending
-                                                    </span>
-                                                <?php else : ?>
+                                                <?php if ($t->is_success == 1) : ?>
                                                     <span class="badge badge-success">
                                                         Success
+                                                    </span>
+                                                <?php else : ?>
+                                                    <span class="badge badge-warning">
+                                                        Pending
                                                     </span>
                                                 <?php endif ?>
                                             </td>
@@ -64,7 +64,7 @@
                                                 $query = $this->db->get_where('t_transaksi_detail', ['invoice' => $t->invoice])->num_rows();
                                                 if ($query > 0) :
                                                 ?>
-                                                    <a href="#" class="btn btn-success btn-sm">Konfirmasi</a>
+                                                    <a href="#" class="btn btn-success btn-sm">Success</a>
                                                 <?php else : ?>
                                                     <a href="<?php echo base_url('konfirmasi?invoice=' . $t->invoice); ?>" class="btn btn-primary btn-sm">Konfirmasi</a>
                                                 <?php endif; ?>

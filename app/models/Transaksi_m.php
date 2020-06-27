@@ -5,7 +5,8 @@ class Transaksi_m extends CI_Model
 {
     public function getAllTransaksi()
     {
-        return $this->db->get_where('t_transaksi', ['is_success' => 2])->result();
+        $this->db->order_by('tgl_transaksi', 'desc');
+        return $this->db->get('t_transaksi')->result();
     }
     public function getAllTransaksiById($id)
     {
@@ -13,6 +14,6 @@ class Transaksi_m extends CI_Model
     }
     public function getAllTransaksiDetailById($id)
     {
-        return $this->db->get_where('t_transaksi', ['invoice' => $id])->row();
+        return $this->db->get_where('t_transaksi_detail', ['invoice' => $id])->row();
     }
 }

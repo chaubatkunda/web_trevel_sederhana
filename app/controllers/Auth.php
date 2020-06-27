@@ -16,13 +16,17 @@ class Auth extends CI_Controller
     }
     private function _chek_login()
     {
-        $url = $this->input->get('url', true);
+        if ($this->input->get('url', true)) {
+            $url = $this->input->get('url', true);
+        } else {
+            $url = 'user';
+        }
         $email = $this->input->post('email', true);
         $password = $this->input->post('password', true);
         $user = $this->user->user_login($email);
         if ($user) {
             if (password_verify($password, $user->password)) {
-                $data = [
+                $data = [ 
                     'id_user'   => $user->id_user,
                     'email'     => $user->email,
                     'role'      => $user->role

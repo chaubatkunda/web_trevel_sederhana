@@ -24,10 +24,19 @@ class Transaksi extends CI_Controller
         $data = array(
             'title'     => 'Konfirmasi Pembayaran',
             'left'      => 'Transaksi',
+            'detail'    => $this->transaksi->getAllTransaksiDetailById($id),
             'transaksi' => $this->transaksi->getAllTransaksiById($id),
-            'detail' => $this->transaksi->getAllTransaksiDetailById($id),
             'isi'       => 'backend/transaksi/konfirmasi'
         );
         $this->load->view('backend/template/wrap', $data, false);
+    }
+    public function simpan()
+    {
+        $invoice = $this->input->post('invoice', true);
+        $data = [
+            'is_success'       => $this->input->post('verify', true)
+        ];
+        $this->db->update('t_transaksi', $data, ['invoice' => $invoice]);
+        redirect('admin/transaksi');
     }
 }

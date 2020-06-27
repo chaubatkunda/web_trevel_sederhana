@@ -7,7 +7,7 @@
                 <div class="col-8">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">DataTables</li>
+                        <li class="breadcrumb-item active"><?php echo $title; ?></li>
                     </ol>
                 </div>
             </div>
@@ -17,13 +17,14 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
+            <div class="row justify-content-center">
+                <div class="col-8">
                     <div class="callout callout-info">
-                        <h5><i class="fas fa-info"></i> Note:</h5>
-                        This page has been enhanced for printing. Click the print button at the bottom of the invoice to test.
+                        <h5><i class="fas fa-info"></i> Bukti Pembayaran:</h5>
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-info">
+                            Show Bukti Pembayaran
+                        </button>
                     </div>
-
 
                     <!-- Main content -->
                     <div class="invoice p-3 mb-3">
@@ -31,8 +32,8 @@
                         <div class="row">
                             <div class="col-12">
                                 <h4>
-                                    <i class="fas fa-globe"></i> AdminLTE, Inc.
-                                    <small class="float-right">Date: 2/10/2014</small>
+                                    <!-- <i class="fas fa-globe"></i> AdminLTE, Inc. -->
+                                    <small class="float-right">Tanggal: <?php echo indoDate($detail->tgl_bayar); ?></small>
                                 </h4>
                             </div>
                             <!-- /.col -->
@@ -40,35 +41,15 @@
                         <!-- info row -->
                         <div class="row invoice-info">
                             <div class="col-sm-4 invoice-col">
-                                From
+                                <!-- Pengirim -->
                                 <address>
-                                    <strong>Admin, Inc.</strong><br>
-                                    795 Folsom Ave, Suite 600<br>
-                                    San Francisco, CA 94107<br>
-                                    Phone: (804) 123-5432<br>
-                                    Email: info@almasaeedstudio.com
+                                    <b>Invoice : </b> #<?php echo $detail->invoice; ?><br>
+                                    <b>Pengirim : </b> <?php echo $detail->nama_pengirim; ?><br>
+                                    <b>Tanggal : </b><?php echo indoDate($detail->tgl_transfer); ?><br>
+                                    <!-- Phone: (804) 123-5432<br>
+                                    Email: info@almasaeedstudio.com -->
                                 </address>
                             </div>
-                            <!-- /.col -->
-                            <div class="col-sm-4 invoice-col">
-                                To
-                                <address>
-                                    <strong>John Doe</strong><br>
-                                    795 Folsom Ave, Suite 600<br>
-                                    San Francisco, CA 94107<br>
-                                    Phone: (555) 539-1037<br>
-                                    Email: john.doe@example.com
-                                </address>
-                            </div>
-                            <!-- /.col -->
-                            <div class="col-sm-4 invoice-col">
-                                <b>Invoice #007612</b><br>
-                                <br>
-                                <b>Order ID:</b> 4F3S8J<br>
-                                <b>Payment Due:</b> 2/22/2014<br>
-                                <b>Account:</b> 968-34567
-                            </div>
-                            <!-- /.col -->
                         </div>
                         <!-- /.row -->
 
@@ -78,92 +59,43 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Qty</th>
-                                            <th>Product</th>
-                                            <th>Serial #</th>
-                                            <th>Description</th>
-                                            <th>Subtotal</th>
+                                            <th>Wisata</th>
+                                            <th>Berangkat</th>
+                                            <th>Pulang</th>
+                                            <th>Wisatawan</th>
+                                            <th class="text-center">Subtotal</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>1</td>
-                                            <td>Call of Duty</td>
-                                            <td>455-981-221</td>
-                                            <td>El snort testosterone trophy driving gloves handsome</td>
-                                            <td>$64.50</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Need for Speed IV</td>
-                                            <td>247-925-726</td>
-                                            <td>Wes Anderson umami biodiesel</td>
-                                            <td>$50.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Monsters DVD</td>
-                                            <td>735-845-642</td>
-                                            <td>Terry Richardson helvetica tousled street art master</td>
-                                            <td>$10.70</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Grown Ups Blue Ray</td>
-                                            <td>422-568-642</td>
-                                            <td>Tousled lomo letterpress</td>
-                                            <td>$25.99</td>
+                                            <td><?php echo $transaksi->wisata; ?></td>
+                                            <td><?php echo indoDate($transaksi->chek_in); ?></td>
+                                            <td><?php echo indoDate($transaksi->chek_out); ?></td>
+                                            <td><?php echo $transaksi->jumlah_wisatawan; ?> Orang</td>
+                                            <td class="text-right">
+                                                <?php echo indoCurrency($transaksi->harga); ?>
+                                            </td>
                                         </tr>
                                     </tbody>
+                                    <tr>
+                                        <td colspan="4" class="text-right">Total</td>
+                                        <td class="text-right text-primary">
+                                            <?php echo indoCurrency($transaksi->total); ?>
+                                        </td>
+                                    </tr>
                                 </table>
+
+                                <form action="<?php echo base_url('admin/simpan_konfirmasi'); ?>" method="post">
+                                    <div class="form-group">
+                                        <label for=""></label>
+                                        <input type="hidden" name="invoice" id="" class="form-control" value="<?php echo $detail->invoice; ?>">
+                                        <input type="hidden" name="verify" id="" class="form-control" value="1">
+                                        <button type="submit" class="btn btn-primary">Konfirmasi</button>
+                                        <a href="<?php echo base_url('admin/transaksi'); ?>" class="btn btn-danger">Batal</a>
+                                    </div>
+                                </form>
                             </div>
                             <!-- /.col -->
-                        </div>
-                        <!-- /.row -->
-
-                        <div class="row justify-content-end">
-                            <!-- /.col -->
-                            <div class="col-6">
-                                <p class="lead">Amount Due 2/22/2014</p>
-
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <tbody>
-                                            <tr>
-                                                <th style="width:50%">Subtotal:</th>
-                                                <td>$250.30</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Tax (9.3%)</th>
-                                                <td>$10.34</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Shipping:</th>
-                                                <td>$5.80</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Total:</th>
-                                                <td>$265.24</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <!-- /.col -->
-                        </div>
-                        <!-- /.row -->
-
-                        <!-- this row will not appear when printing -->
-                        <div class="row no-print">
-                            <div class="col-12">
-                                <a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
-                                <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit
-                                    Payment
-                                </button>
-                                <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
-                                    <i class="fas fa-download"></i> Generate PDF
-                                </button>
-                            </div>
                         </div>
                     </div>
                     <!-- /.invoice -->
@@ -173,3 +105,31 @@
     </section>
     <!-- /.content -->
 </div>
+
+<div class="modal fade" id="modal-info">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content bg-info">
+            <div class="modal-header">
+                <h4 class="modal-title">Bukti Pembayaran</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col">
+                            <img src="<?php echo base_url('public/assets/bukti_transfer/' . $detail->bukti_transfer); ?>" class="rounded">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-light">Save changes</button>
+            </div> -->
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

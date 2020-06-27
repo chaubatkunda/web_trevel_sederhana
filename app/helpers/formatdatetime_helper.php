@@ -6,6 +6,10 @@ function indoDate($date)
     $y = substr($date, 0, 4);
     return $d . "-" . $m . "-" . $y;
 }
+function indoDateTime($value)
+{
+    return date('d-m-Y , H:i', strtotime($value));
+}
 
 function indoCurrency($value)
 {
